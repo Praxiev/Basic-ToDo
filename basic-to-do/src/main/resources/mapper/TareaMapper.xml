@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.projects.basictodo.mappers.TareaMapper">
+      <resultMap id="BaseResultMap"  type="com.projects.basictodo.mappers.TareaMapper" >
+        <id column="idTarea" property="idTarea" jdbcType="BIGINT" />
+        <result column="descripcion" property="descripcion"  jdbcType="VARCHAR" />
+        <result column="flg_estado" property="flg_estado"  jdbcType="TINYINT" />
+    </resultMap>
+    
+    <select id="findAll" resultType="Tarea">
+        select * from Tarea
+    </select>
+    
+   <insert id="insertTarea"  useGeneratedKeys="true" keyProperty="idTarea">
+        insert into Tarea(descripcion, flg_estado) values(#{descripcion},#{flg_estado})
+    </insert>
+    
+    <update id="updateTarea">
+       update Tarea set descripcion = #{descripcion} 
+       where idTarea = #{idTarea}
+    </update>
+    
+    <update id="confirmTarea">
+       update Tarea set flg_estado = #{flg_estado} 
+       where idTarea = #{idTarea}
+    </update>
+    
+    <delete id="deleteTarea">
+       delete from Tarea where idTarea = #{idTarea}
+    </delete>
+</mapper>
